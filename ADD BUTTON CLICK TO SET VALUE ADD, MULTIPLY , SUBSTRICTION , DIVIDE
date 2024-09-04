@@ -1,0 +1,23 @@
+// ADD
+var a = apex.item('P34_VALUE1').getValue();
+var b = apex.item('P34_VALUE2').getValue();
+var res = parseFloat(a) + parseFloat(b);
+apex.item('P34_ADD').setValue(res);
+
+// MULTIPLY
+var a = apex.item('P34_VALUE1').getValue();
+var b = apex.item('P34_VALUE2').getValue();
+var res = parseFloat(a) * parseFloat(b);
+apex.item('P34_MUL').setValue(res);
+
+// SUBTRACTION
+var a = apex.item('P34_VALUE1').getValue();
+var b = apex.item('P34_VALUE2').getValue();
+var res = parseFloat(a) / parseFloat(b);
+apex.item('P34_SUBTIRCTION').setValue(res);
+
+// MINUS
+var a = apex.item('P34_VALUE1').getValue();
+var b = apex.item('P34_VALUE2').getValue();
+var res = parseFloat(a) - parseFloat(b);
+apex.item('P34_MINUS').setValue(res);
