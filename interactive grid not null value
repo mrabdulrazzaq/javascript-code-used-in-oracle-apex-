@@ -1,0 +1,2 @@
+apex.region("yes").call("getActions").set("edit", true);
+apex.region("yes").call("getActions").hide("edit");
