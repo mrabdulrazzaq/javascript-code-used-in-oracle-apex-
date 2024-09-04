@@ -1,0 +1,18 @@
+var textArea = document.getElementById('P65_REMARKS');
+textArea.addEventListener('input', function() {
+    textArea.value = textArea.value.replace(/[^a-zA-Z\s]/g, '');
+});
+======================================
+MULTIPLE COLUMN 
+
+// Array of text area IDs
+var textAreaIds = ['P65_REMARKS', 'P66_REMARKS', 'P67_REMARKS']; // Add more IDs as needed
+
+textAreaIds.forEach(function(id) {
+    var textArea = document.getElementById(id);
+    if (textArea) {
+        textArea.addEventListener('input', function() {
+            textArea.value = textArea.value.replace(/[^a-zA-Z\s]/g, '');
+        });
+    }
+});
