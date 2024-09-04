@@ -1,0 +1,15 @@
+var itemValue = apex.item("P906_NARRATION").getValue();
+if (itemValue == null || itemValue.trim() === '') {
+    apex.message.showErrors([
+       /* {
+            type: apex.message.TYPE.ERROR,
+            location: ["inline"],
+            pageItem: "P906_NARRATION",
+           // message: "Please Write Down the Narration FirstTTTTTTTTTTTTTTTTT......!"
+        } */
+    ]);
+    apex.message.alert("Please Write Down the Narration First......!");    
+    return false;
+} else {
+    return true;
+}
