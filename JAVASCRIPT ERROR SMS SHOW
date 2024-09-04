@@ -1,0 +1,7 @@
+     apex.message.clearErrors();
+    apex.message.showErrors([{
+        type: "error",
+        location: "page",
+        message: "Please Select Someone record...! ",
+        unsafe: false
+    }]);
