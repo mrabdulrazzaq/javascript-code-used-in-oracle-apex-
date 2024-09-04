@@ -1,0 +1,12 @@
+function restrictNumericInput() {
+    // Add event listener to elements with class 'only-numeric'
+    document.querySelectorAll('.only-numeric').forEach(function(element) {
+        element.addEventListener('input', function(e) {
+            // Remove any non-numeric characters
+            e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+        });
+    });
+}
+
+// Execute function when document is ready
+document.addEventListener('DOMContentLoaded', restrictNumericInput);
