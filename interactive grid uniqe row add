@@ -1,0 +1,18 @@
+var model = apex.region("DR").widget().interactiveGrid("getViews","grid").model;
+var items = {};
+var hasDuplicates = false;
+
+model.forEach(function(record, index, id){
+   var itemId = model.getValue(record, "ITEM_ID");
+   if (items[itemId]) {
+      hasDuplicates = true;
+      return false; // Exit loop
+   } else {
+      items[itemId] = true;
+   }
+});
+
+if (hasDuplicates) {
+   apex.message.alert("Duplicate ITEM ID found. ITEM ID MUST BE UNIQUE.");
+   apex.event.gCancelFlag = true; // Prevent form submission
+}
