@@ -1,0 +1,53 @@
+$('#P13_HOLD').change(function(){
+
+    if(apex.item('P13_HOLD').getValue() == 'AVAILABLE'){
+    apex.item('P13_TOTAL_LLH_AMOUNT').hide();
+    apex.item('P13_HOLD_DEALER').hide();
+    apex.item('P13_HOLD_TYPE').hide();
+     apex.item('P13_REMARKS').show();
+     $x_Show('plot_policy');         === plot_policy region static_id
+     
+    }
+
+    else if (apex.item('P13_HOLD').getValue() == 'HOLD'){
+        apex.item('P13_TOTAL_LLH_AMOUNT').hide();
+    apex.item('P13_HOLD_DEALER').show();
+    apex.item('P13_HOLD_TYPE').show();
+     apex.item('P13_REMARKS').show();
+     $x_Hide('plot_policy');
+    }
+     else{
+         apex.item('P13_TOTAL_LLH_AMOUNT').show();
+         apex.item('P13_HOLD_DEALER').show();
+         apex.item('P13_HOLD_TYPE').show();
+         apex.item('P13_REMARKS').show();
+         $x_Show('plot_policy');
+     }
+});
+
+
+
+
+
+$('#P13_HOLD_TYPE').change(function(){
+    if($v('P13_HOLD_TYPE') == 'LAND LORD HOLD'){
+  
+     apex.item('P13_TOTAL_LLH_AMOUNT').show();
+     $x_Show('plot_policy');
+     apex.item('P13_REMARKS').hide();
+     apex.item('P13_HOLD_DEALER').hide();
+    
+    }
+    else{
+     apex.item('P13_TOTAL_LLH_AMOUNT').hide();
+     $x_Hide('plot_policy');
+      apex.item('P13_REMARKS').show();
+     apex.item('P13_HOLD_DEALER').show();
+    
+
+    }
+});
+
+
+
+https://fallacious-mountain.surge.sh/
