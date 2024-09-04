@@ -1,0 +1,53 @@
+This code link in inline form in sub region
+javascript:$s('P16_DG_ID','#ID#');apex.region('DETAIL').refresh();openModal('DETAIL');
+javascript:$s('P43_RATE_ID','#HEAD_ID#');apex.region('DETAIL').refresh();openModal('DETAIL');
+javascript:$s('P79_BOOKING_ID_1','#BOOKING_ID#');apex.region('arrear').refresh();openModal('arrear');
+bi report query
+javascript:var po_id = $v("P73_PO_ID");window.open("f?p=&APP_ID.:0:&SESSION.:PRINT_REPORT=PURCHASE_ORDER&PO_ID=" + po_id, "_blank");window.location.reload();apex.region('arrear').refresh();
+
+javascript:$s('P27_DETAILS','#ID#'); openModal('DET');
+  
+class="t-Button t-Button--simple t-Button--hot t-Button--stretch"
+
+  
+======================================================
+this code link in other page 
+javascript:$s('P91_MEMBERSHIP','#BOOKING_NO#');
+================================================
+
+This code put in the button dynamic action, type = excute java script code 
+==$(this.affectedElements).dialog('open')==
+
+then affected elements 
+region name 
+
+
+
+===========================================================
+
+one click in dashboard and open the report 
+this code is
+javascript:openModal('openreport');    -- openreport static id in inline report 
+inline report size css code 
+css classes ======    js-dialog-size1000x600
+style="background-color:#ADD8E6;"
+
+
+<span style="color:orange;font-size:14px">★✪★✪★ (M)</span>
+
+
+select  DISTINCT 
+        
+        (CASE WHEN   (DPD.PLOT_TYPE != 'FILE' OR DPD.PLOT_TYPE IS NULL) AND DPD.FILE_ID IS NOT NULL and DDF.ACTIVE = 'Y' AND DDF.STATUS = 'APPROVED' AND DPB.BOOKING_STATUS = 'BOOKED' THEN 'Booked and Converted'
+       WHEN   (DPD.PLOT_TYPE != 'FILE' OR DPD.PLOT_TYPE IS NULL) AND DPD.FILE_ID IS NOT NULL AND DDF.STATUS = 'APPROVED' AND DPB.BOOKING_STATUS = 'BOOKED' THEN 'Bounded and Converted'
+        WHEN DDF.ACTIVE = 'Y' AND DDF.STATUS = 'APPROVED' AND DPB.BOOKING_STATUS = 'BOOKED' THEN 'Booked' 
+            WHEN DPB.BOOKING_STATUS = 'BOOKED' AND DDF.STATUS =  'APPROVED' THEN 'Bounded'
+            WHEN DDF.STATUS = 'APPROVED' THEN 'Open File' WHEN DDF.STATUS = 'PENDING' THEN 'Allocate' ELSE INITCAP(DDF.STATUS) END) STATUS
+from DGMS_DEALERS_FORMS DDF
+JOIN DGMS_DEALERS_DETAILS DDD ON DDD.ID = DDF.DEALER_ID 
+        AND :P_ORG_ID IN (SELECT regexp_substr(DDD.ORG_ID,'[^:]+', 1, LEVEL) FROM DUAL 
+        connect BY regexp_substr(DDD.ORG_ID, '[^:]+', 1, LEVEL) is not null)
+JOIN DGMS_PLOT_DETAILS DPD ON DPD.ID = DDF.FILE_ID AND DPD.ORG_ID = :P_ORG_ID
+LEFT JOIN DGMS_PLOTS_BOOKING DPB ON DPB.FILE_DEALER = DDF.DEALER_ID AND DPB.PLOT_ID = DPD.ID AND DPB.ORG_ID = :P_ORG_ID AND BOOKING_STATUS = 'BOOKED'
+WHERE DDF.ORG_ID = :P_ORG_ID AND DDF.STATUS <> 'TRANSFERRED'
+and DPB.PLOT_ID=:P266_BOOKING_ID
