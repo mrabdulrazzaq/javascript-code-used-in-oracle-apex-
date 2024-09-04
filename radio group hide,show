@@ -1,0 +1,45 @@
+$(document).ready(function(){
+    var plotOption = $("input[name='P13_FILE_TYPE'][value='PLOT']");
+    var plotOption1 = $("input[name='P13_FILE_TYPE'][value='FILE']");
+    if ($v("P13_ID") !== null && $v("P13_ID") !== ""  && $v("P13_FILE_TYPE") == "FILE") {
+        plotOption.prop('disabled', true);
+    }
+     else if ($v("P13_ID") !== null && $v("P13_ID") !== ""  && $v("P13_FILE_TYPE") == "PLOT") {
+         plotOption1.prop('disabled', true);
+     }
+});
+
+//=============================================================================================
+
+$(document).ready(function(){
+    var plotOption = $("input[name='P13_FILE_TYPE'][value='PLOT']");
+    var popupLovItem = document.getElementById("P13_PLOT_ID");
+    var plotOption1 = $("input[name='P13_FILE_TYPE'][value='FILE']");
+
+    if ($v("P13_ID") !== null && $v("P13_ID") !== ""  && $v("P13_FILE_TYPE") == "FILE") {
+        plotOption.prop('disabled', true);
+         popupLovItem.setAttribute("disabled", "disabled");
+    }
+     else if ($v("P13_ID") !== null && $v("P13_ID") !== ""  && $v("P13_FILE_TYPE") == "PLOT") {
+         plotOption1.prop('disabled', true);
+          popupLovItem.setAttribute("disabled", "disabled");
+     }
+});
+
+this second code : is me ham change ke upar id bi disable karwa rhy hn ,
+
+
+=====================================================================================
+
+this query only enter numeric values in item not for character 
+
+$(".only-numeric").bind("keypress", function (e) {
+    var keyCode = e.which ? e.which : e.keyCode
+
+    if (!(keyCode >= 48 && keyCode <= 57)) {
+        return false;
+    }else{
+        return true;
+    }
+});
+ur phir only-numeric ko hm ne css-classes me lgna ha jo advanced me ha 
