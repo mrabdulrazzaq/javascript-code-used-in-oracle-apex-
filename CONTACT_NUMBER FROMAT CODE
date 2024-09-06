@@ -1,0 +1,16 @@
+////////////////////////////////////EXECUTE WHEN PAGE LOAD ////////////////////////////////////////////
+document.getElementById('P7_CONTACT_NUMBER').addEventListener('input', function (event) {
+    var input = event.target.value.replace(/\D/g, ''); // Remove non-digit characters
+    var formattedNumber = '';
+
+    if (input.length > 0) {
+        formattedNumber += input.substring(0, 4); // First 4 digits
+    }
+    if (input.length >= 5) {
+        formattedNumber += '-' + input.substring(4, 8); // Next 4 digits
+    }
+    if (input.length >= 9) {
+        formattedNumber += '-' + input.substring(8, 11); // Last 3 digits
+    }
+    event.target.value = formattedNumber; // Set the formatted value back to the input
+});
