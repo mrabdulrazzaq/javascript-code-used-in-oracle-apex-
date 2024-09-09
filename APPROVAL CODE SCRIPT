@@ -1,0 +1,6 @@
+javascript:$s('P57_PO_DET_ID','#DET_ID#');
+javascript:$s('P57_CATEGORY_ID','#CATEGORY_ID#');
+javascript:$s('P57_PRODUCT_SIZE','#PACKING_SIZE#');
+javascript:$s('P57_PRODUCT_NAME','#ITEM_NAME#');
+javascript:$s('P57_CATEGORY_NAME','#CATERGORY_NAME#');
+openModal('TAX_ADD');apex.region('TAX_ADD').refresh();
