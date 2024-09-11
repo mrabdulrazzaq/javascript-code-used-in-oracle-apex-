@@ -51,3 +51,54 @@ $('#P13_HOLD_TYPE').change(function(){
 
 
 https://fallacious-mountain.surge.sh/
+///////////////////////////////////////////////hide and show the function ////////////////////////////////////////////////////////////////////////////////////////
+$('#P9_COMPANY_ITEMS').change(function(){
+    var P9_COMPANY_ITEMS = apex.item('P9_COMPANY_ITEMS').getValue();
+    
+    if(P9_COMPANY_ITEMS === 'MAIN CATEGORY'){
+        $x_Show('MAIN');   // Show MAIN
+        $x_Hide('CATEGORY'); // Hide CATEGORY
+        $x_Hide('PRODUCT');  // Hide PRODUCT
+        $x_Hide('BRAND');
+        $x_Show('MC');
+        $x_Hide('PC');
+        $x_Hide('PTD');
+        $x_Hide('BT');
+    }
+    else if(P9_COMPANY_ITEMS === 'PRODUCT CATEGORY'){
+        $x_Show('CATEGORY'); // Show CATEGORY
+        $x_Hide('PRODUCT');  // Hide PRODUCT
+        $x_Hide('MAIN');     // Hide MAIN
+        $x_Hide('BRAND');
+        $x_Show('PC');
+        $x_Hide('MC');
+        $x_Hide('PTD');
+        $x_Hide('BT');
+    }
+    else if(P9_COMPANY_ITEMS === 'PRODUCT TYPE'){
+        $x_Hide('CATEGORY'); // Hide CATEGORY
+        $x_Show('PRODUCT');  // Show PRODUCT
+        $x_Hide('MAIN');     // Hide MAIN
+        $x_Hide('BRAND');
+         $x_Hide('PC');
+        $x_Hide('MC');
+        $x_Show('PTD');
+        $x_Hide('BT');
+    } 
+    else if(P9_COMPANY_ITEMS === 'BRAND NAME'){
+       $x_Show('BRAND');
+        $x_Hide('PRODUCT');  // Hide PRODUCT
+        $x_Hide('CATEGORY'); // Hide CATEGORY
+        $x_Hide('MAIN'); 
+          $x_Hide('PC');
+        $x_Hide('MC');
+        $x_Hide('PTD');
+        $x_Show('BT');
+    }
+    else {
+        $x_Hide('BRAND');
+        $x_Hide('PRODUCT');  // Hide PRODUCT
+        $x_Hide('CATEGORY'); // Hide CATEGORY
+        $x_Hide('MAIN');     // Hide MAIN
+    }
+});
