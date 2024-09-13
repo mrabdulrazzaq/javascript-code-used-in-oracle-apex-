@@ -27,3 +27,54 @@ $(document).ready(function() {
         });
     });
 });
+//////////////////////////////////////////////CSSSSSS KA CODE APPLY KRNA HAI ES MN ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* Style for Control Break Headings */
+.a-IRR-table th.control-break {
+    background-color: #E0E0E0; /* Slightly darker grey background for emphasis */
+    color: #000000; /* Black text color for high contrast */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center align the heading text */
+    padding: 12px; /* Add some padding for better spacing */
+    border-bottom: 2px solid #888888; /* Darker bottom border for definition */
+    font-size: 11px; /* Slightly larger font size for prominence */
+    text-transform: uppercase; /* Convert text to uppercase for emphasis */
+}
+
+/* Optional: Add a different color for control breaks */
+.a-IRR-table th.control-break.alternate {
+    background-color: #D3D3D3; /* Light grey background for alternate control breaks */
+}
+
+.bell-icon {
+    cursor: pointer;
+    font-size: 18px; /* Adjust the icon size */
+    color: #007bff; /* Icon color */
+}
+
+.popup-box {
+    z-index: 1000; /* Make sure popup is above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.blinking-icon {
+    animation: blink 1s step-start infinite;
+    font-size: 22px; /* Increase font size for the blinking bell icon */
+}
+
+.static-icon {
+    font-size: 22px; /* Increase font size for the static checkmark icon */
+}
+//////////////////////////////////////////////////////////END MN YE CONDITION LGANY HAI REPORT PR ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+ CASE 
+        WHEN (TTA.DET_ID - TTA.DEAL_POLICY_ID) = 0 THEN
+            '<span style="background-color: #D1ECF1; color: #0C5460; padding: 5px 15px; border-radius: 5px; border: 1px solid #BEE5EB; margin: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); display: inline-block;">TAX APPROVED <span class="static-icon">✔️</span></span>'
+        ELSE 
+            '<span style="background-color: #FFF3CD; color: #856404; padding: 5px 15px; border-radius: 5px; border: 1px solid #FFEEBA; margin: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); display: inline-block;">PENDING (' 
+            || (TTA.DET_ID - TTA.DEAL_POLICY_ID) || ') <span class="blinking-icon">🔔</span></span>'
+    END AS STATUS  
