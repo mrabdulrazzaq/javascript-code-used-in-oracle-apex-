@@ -1,0 +1,29 @@
+$(document).ready(function() {
+    // Detect bell icon click
+    $(document).on('click', '.bell-icon', function() {
+        var pendingCount = $(this).data('pending');
+        
+        // Create a popup
+        var popup = $('<div class="popup-box">')
+            .text(pendingCount + ' approvals pending')
+            .appendTo('body');
+        
+        // Show the popup near the bell icon
+        popup.css({
+            position: 'absolute',
+            top: $(this).offset().top + 20,
+            left: $(this).offset().left,
+            padding: '10px',
+            backgroundColor: '#f9f9f9',
+            border: '1px solid #ccc',
+            borderRadius: '5px'
+        });
+
+        // Close popup on click anywhere outside
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.popup-box, .bell-icon').length) {
+                $('.popup-box').remove();  // Remove the popup when clicking outside
+            }
+        });
+    });
+});
