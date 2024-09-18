@@ -1,0 +1,39 @@
+var empIdsArr = apex.item('P99_PO_IDS').getValue().split(':');
+
+var widget = apex.region('LO').widget();/////////////////////////////////////'LO' IS A STATIC ID /////////////////////////////////////////////////////////////////////////////////////////
+var grid = widget.interactiveGrid('getViews', 'grid');
+
+grid.model.clearData();  
+
+for (i = 0; i < empIdsArr.length; i++) {
+    let jv_id = empIdsArr[i];         
+    apex.server.process(
+        "PO_INFO_FETCH",  
+        { x01: jv_id },  
+        {
+            beforeSend: function() {
+            },
+            success: function(pData) {
+                if (pData.success == true) { 
+                    var myNewRecordId = grid.model.insertNewRecord();
+                    var myNewRecord = grid.model.getRecord(myNewRecordId);
+                    grid.model.setValue(myNewRecord, "DET_ID", pData.DET_ID1.toString());
+                    grid.model.setValue(myNewRecord, "ITEM_ID", pData.ITEM_ID1.toString());
+                    grid.model.setValue(myNewRecord, "ITEM_NAME", pData.ITEM_NAME1.toString());
+                    grid.model.setValue(myNewRecord, "PACKING", pData.PACKING1.toString());
+                    grid.model.setValue(myNewRecord, "PACKING_SIZE", pData.PACKING_SIZE1.toString());
+                    grid.model.setValue(myNewRecord, "ACUTAL_ORDER", pData.ACUTAL_ORDER1.toString());
+                    grid.model.setValue(myNewRecord, "REMAINING_TONS", pData.NO_TONS1.toString());
+                    grid.model.setValue(myNewRecord, "REMAINING_BAGS", pData.NO_BAGS1.toString());
+                } else {
+                    console.error('Error in PL/SQL process:', pData.err_msg);
+                }
+            },
+            complete: function() {
+            },
+            error: function(pError) {
+                console.error("Error in AJAX call:", pError);
+            }
+        }
+    );
+}
