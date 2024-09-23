@@ -1,0 +1,1 @@
+javascript:$s('P117_CLUB_PRODUCT_DEAL','#NET_AMOUNT#');apex.region('CPD').refresh();openModal('CPD');
