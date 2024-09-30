@@ -1,0 +1,15 @@
+var clubRegion = $('#CLUB'); /////////CLUB IS A STATIC ID ////////////////
+var actualRegion = $('#DEAL'); /////////DEAL IS A STATIC ID ////////////////
+
+
+if (clubRegion.is(':visible')) {
+   
+    clubRegion.hide();
+    actualRegion.show();
+} else {
+    // Show club region and hide actual region
+    clubRegion.show();
+    actualRegion.hide();
+
+   
+}
