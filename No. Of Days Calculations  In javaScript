@@ -1,0 +1,10 @@
+DECLARE
+    v_no_of_days NUMBER;
+BEGIN
+    IF :P33_ISSUE_DATE IS NOT NULL AND :P33_EXP_DATE IS NOT NULL THEN
+        v_no_of_days := TO_DATE(:P33_EXP_DATE, 'DD-MON-YYYY') - TO_DATE(:P33_ISSUE_DATE, 'DD-MON-YYYY');
+        :P33_NO_OF_DAYS := v_no_of_days;
+    ELSE
+        :P33_NO_OF_DAYS := NULL;
+    END IF;
+END;
