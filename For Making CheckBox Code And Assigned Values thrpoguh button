@@ -1,0 +1,100 @@
+///////////////////////////////////////////////JavaScript Code On Dynamic Action Side //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var cb$, checked, allRows$,
+    sel$ = $("#P176_NEW"),////////////////////////////this is a page Items ///////////////////
+    event = this.browserEvent,
+    target$ = $(event.target),
+    th$ = target$.closest("th"),
+    tr$ = target$.closest("tr");
+
+if (th$.length) {
+    // Click on "Select All" checkbox or cell
+    cb$ = th$.find("input");
+    if (cb$.length && cb$.val() === "all") {
+        checked = cb$[0].checked;
+        if (target$[0].nodeName !== 'INPUT') {
+            // Only if click was not on the checkbox itself
+            checked = cb$[0].checked = !checked;
+        }
+        if (sel$.val() === "") {
+            sel$.val(":");
+        }
+        // Loop through each row's checkbox
+        $("#PWS").find("td input").each(function() {
+            this.checked = checked;
+            // Add or remove visual style for selected rows
+            $(this).closest("tr").toggleClass("selected", checked);
+            // Update the hidden selected items
+            sel$.val(sel$.val().replace(":" + this.value + ":", ":"));
+            if (checked) {
+                sel$.val(sel$.val() + this.value + ":");
+            }
+        });
+    }
+} else if (tr$.length) {
+    // Click on individual row
+    cb$ = tr$.find("td").first().find("input");
+    checked = cb$[0].checked;
+    if (target$[0].nodeName !== 'INPUT') {
+        checked = cb$[0].checked = !checked;
+    }
+    // Add or remove visual style for selected row
+    tr$.toggleClass("selected", checked);
+    // Update the hidden selected items
+    if (checked) {
+        if (sel$.val() === "") {
+            sel$.val("");
+        }
+        sel$.val(sel$.val() + cb$.val() + ":");
+    } else {
+        sel$.val(sel$.val().replace(cb$.val() + ":", ""));
+    }
+    
+    // Update select all checkbox state
+    allRows$ = $("#PWS").find("td input");////////////////////////this is a class///////////
+    checked = (allRows$.length === allRows$.filter(":checked").length);
+    $("#PWS").find("th input")[0].checked = checked;
+}
+
+///////////////////////////////////////////////////////// Checkbox Input Type On Heading Value  And Off Special Charcater///////////////////////////////////////////////////////////////////////////////////////
+<input type="checkbox" onclick="javascript:$f_CheckAll(this, this.checked, $('[name=f01]'));">
+///////////////////////////////////////////////////////////////////Assign Values Using button On The Process Side //////////////////////////////////////////////////////////////////////////////////////////////
+
+    DECLARE 
+        V_ID        Number;
+        V_DES       VARCHAR2(500);
+    BEGIN 
+     IF apex_application.g_f01.count <> 0 THEN    
+        FOR i IN 1..apex_application.g_f01.count LOOP
+            V_ID := TO_NUMBER(NVL(apex_application.g_f01(i), 0)); 
+            ----------------------------------------------------------
+           SELECT MENU.MENU_DESCRIPTION INTO V_DES FROM AB_APP_MENU_REGISTRATION MENU WHERE 
+                MENU.MENU_ID IS NOT NULL 
+              AND  MENU.MENU_ID=V_ID;
+
+            -----------------------------------------------------------
+             INSERT INTO AB_UM_USER_ACCESS(
+                                      ACCESS_TYPE,
+                                      GROUP_ID,
+                                      APPLICATION_ID,
+                                      PAGE_ID,
+                                      STATUS,
+                                      PAGE_DESCRIPTION                        
+       )
+          VALUES (
+                 :P21_MENU_LIST,
+                 :P21_GROUP_ID,
+                 :P21_APPLICATION_ID,
+                 V_ID,
+                 'Y' ,
+                 V_DES
+            );
+            COMMIT;   
+    END LOOP; 
+    END IF;
+        COMMIT;
+
+    EXCEPTION WHEN OTHERS THEN NULL;
+END;
+
+
